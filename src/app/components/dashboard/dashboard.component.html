@@ -1,5 +1,15 @@
-<div *ngFor="let image of images">
-  <app-image-item [image]="image"></app-image-item>
+<div
+  #scrollContainer
+  class="scroll-container"
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="100"
+  (scrolled)="onScroll()"
+  [scrollWindow]="false"
+>
+  <div *ngFor="let image of images">
+    <app-image-item [image]="image" (click)="selectImage(image)"></app-image-item>
+  </div>
 </div>
 <span>{{imagesLoaded}}</span>
 <span>{{imagesLoaded}}</span>

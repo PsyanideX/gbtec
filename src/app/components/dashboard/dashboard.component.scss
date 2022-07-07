@@ -1,0 +1,12 @@
+.scroll-container {
+  // scroll configuration
+  height: 85%;
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex: 0 1 calc(20% - 10px);
+  gap: 10px;
+}

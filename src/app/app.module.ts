@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { UnsplashInterceptorService } from './shared/services/unsplash-intercept
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
+    InfiniteScrollModule,
     //Custom components
     ImageItemModule
   ],

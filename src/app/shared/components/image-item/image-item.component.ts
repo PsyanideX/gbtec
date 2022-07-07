@@ -9,6 +9,7 @@ import { Image } from '../../models/api-responses/image-list';
 export class ImageItemComponent implements OnInit {
 
   @Input() public image!: Image;
+  @Input() public selected!: boolean;
 
   constructor() { }
 
