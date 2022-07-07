@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ImageViewerComponent } from 'src/app/shared/components/image-viewer/image-viewer.component';
 import { Image } from 'src/app/shared/models/api-responses/image-list';
 import { UnsplashService } from 'src/app/shared/services/unsplash.service';
 
@@ -23,7 +25,8 @@ export class DashboardComponent implements OnInit {
   public imageSelected!: string;
 
   constructor(
-    private readonly _unsplashService: UnsplashService
+    private readonly _unsplashService: UnsplashService,
+    private readonly _dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +45,7 @@ export class DashboardComponent implements OnInit {
     // const selectedImageIndex = this.images.findIndex(image => image.id === selectedImage.id);
     // this.images[selectedImageIndex].selected = true;
     this.imageSelected = selectedImage.id;
+    this._openImageViewer(selectedImage);
   }
 
   /**
@@ -56,6 +60,17 @@ export class DashboardComponent implements OnInit {
       if(!this._isContainerFull()) {
         this.onScroll();
       }
+    });
+  }
+
+  private _openImageViewer(image: Image): void {
+    this._dialog.open(ImageViewerComponent, {
+      width: '100vw',
+      height:  '100vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      hasBackdrop: false,
+      data: image
     });
   }
 

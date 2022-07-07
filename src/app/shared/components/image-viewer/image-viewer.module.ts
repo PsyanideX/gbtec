@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ImageItemComponent } from './image-item.component';
+import { ImageViewerComponent } from './image-viewer.component';
+
+
 
 @NgModule({
   declarations: [
-    ImageItemComponent
+    ImageViewerComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    ImageItemComponent
+    ImageViewerComponent
   ]
 })
-export class ImageItemModule { }
+export class ImageViewerModule { }

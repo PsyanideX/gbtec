@@ -9,20 +9,26 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ImageItemModule } from './shared/components/image-item/image-item.module';
 import { UnsplashInterceptorService } from './shared/services/unsplash-interceptor.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ImageViewerModule } from './shared/components/image-viewer/image-viewer.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
     InfiniteScrollModule,
     //Custom components
-    ImageItemModule
+    ImageItemModule,
+    ImageViewerModule,
+    MatDialogModule
   ],
   providers: [
     {
