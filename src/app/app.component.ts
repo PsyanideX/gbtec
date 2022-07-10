@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
+  public searchQuery!: string;
+
+  public onSearch(searchQuery: string): void {
+    this.searchQuery = searchQuery;
+  }
 }
