@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -10,15 +11,17 @@ import { Image } from '../../models/api-responses/image-list';
 })
 export class ImageViewerComponent {
 
-  public hasMediaLinks!: boolean;
+  private readonly _twitterUrl = 'https://www.twitter.com/';
+  private readonly _instagramUrl = 'https://www.instagram.com/';
+
   public instagramUsername?: string;
   public twitterUsername?: string;
 
   constructor(
+    private readonly _httpClient: HttpClient,
     public dialogRef: MatDialogRef<ImageViewerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Image
   ) {
-    this.hasMediaLinks = !!data.user.social.instagram_username || !!data.user.social.twitter_username;
     this.instagramUsername = data.user.social.instagram_username;
     this.twitterUsername = data.user.social.instagram_username;
   }
@@ -28,11 +31,37 @@ export class ImageViewerComponent {
   }
 
   public goToTwitterProfile(): void {
-    window.open(`https://www.twitter.com/${this.twitterUsername}`, "_blank")
+    window.open(`${this._twitterUrl}${this.twitterUsername}`, "_blank")
   }
 
   public goToInstagramProfile(): void {
-    window.open(`https://www.instagram.com/${this.instagramUsername}`, "_blank")
+    window.open(`${this._instagramUrl}${this.instagramUsername}`, "_blank")
+  }
+
+  public downloadImage(): void {
+    const imgUrl = this.data?.urls?.regular;
+    const imgName = `${this.data?.id}.png`;
+    this._httpClient.get(imgUrl, {responseType: 'blob' as 'json'})
+      .subscribe((res: any) => {
+        const file = new Blob([res], {type: res.type});
+        const blob = window.URL.createObjectURL(file);
+        const link = document.createElement('a');
+
+        link.href = blob;
+        link.download = imgName;
+
+        // Version link.click() to work at firefox
+        link.dispatchEvent(new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        }));
+
+        setTimeout(() => { // firefox
+          window.URL.revokeObjectURL(blob);
+          link.remove();
+        }, 100);
+      });
   }
 
 }
