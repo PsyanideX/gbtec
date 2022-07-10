@@ -12,6 +12,7 @@ import { UnsplashInterceptorService } from './shared/services/unsplash-intercept
 import { MatDialogModule } from '@angular/material/dialog';
 import { ImageViewerModule } from './shared/components/image-viewer/image-viewer.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchbarModule } from './shared/components/searchbar/searchbar.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     //Custom components
     ImageItemModule,
     ImageViewerModule,
-    MatDialogModule
+    MatDialogModule,
+    SearchbarModule
   ],
   providers: [
     {

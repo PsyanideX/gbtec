@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ImageViewerComponent } from 'src/app/shared/components/image-viewer/image-viewer.component';
 import { Image } from 'src/app/shared/models/api-responses/image-list';
@@ -11,7 +11,20 @@ import { UnsplashService } from 'src/app/shared/services/unsplash.service';
 })
 export class DashboardComponent implements OnInit {
 
+  private _searchQuery: string = 'a';
+
   @ViewChild("scrollContainer") scrollContainer!: ElementRef<HTMLDivElement>;
+  @Input() set searchQuery(value: string) {
+    if(value && value !== this.searchQuery) {
+      this._searchQuery = value;
+      this.images = [];
+      this._getImages();
+    }
+  }
+
+  get searchQuery(): string {
+    return this._searchQuery;
+  }
 
   private readonly RESULTS_PER_PAGE: number = 10;
   private readonly ORIENTATION: string = 'portrait';
@@ -42,22 +55,20 @@ export class DashboardComponent implements OnInit {
   }
 
   public selectImage(selectedImage: Image): void {
-    // const selectedImageIndex = this.images.findIndex(image => image.id === selectedImage.id);
-    // this.images[selectedImageIndex].selected = true;
     this.imageSelected = selectedImage.id;
     this._openImageViewer(selectedImage);
   }
 
   /**
-   * Fetches images, 10 by 10. Eac
+   * Fetches images, 10 by 10. Each search increases page number by 1
    */
   private _getImages(): void {
-    this._unsplashService.getImagesByQuery('a', this.RESULTS_PER_PAGE, this.ORIENTATION, this.pageNumber).subscribe( response =>  {
+    this._unsplashService.getImagesByQuery(this.searchQuery, this.RESULTS_PER_PAGE, this.ORIENTATION, this.pageNumber).subscribe( response =>  {
       this.totalPages = response.total_pages;
       this.totalImages = response.total;
       this.imagesLoaded = this.images.push(...response.results);
 
-      if(!this._isContainerFull()) {
+      if(!this._isContainerFull() && this.imagesLoaded < this.totalImages) {
         this.onScroll();
       }
     });

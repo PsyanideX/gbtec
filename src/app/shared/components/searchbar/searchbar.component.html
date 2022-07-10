@@ -1,0 +1,12 @@
+<div class="search-container">
+  <span class="search-title">
+    Gallery
+  </span>
+
+  <div class="search-input">
+    <input type="text" [(ngModel)]="searchQuery" (keyup.enter)="search()">
+    <button (click)="search()">
+      <img src="assets/icons/search.svg">
+    </button>
+  </div>
+</div>
