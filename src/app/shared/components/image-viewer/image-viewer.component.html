@@ -1,0 +1,12 @@
+<div class="image-container">
+  <img class="image" [attr.src]="data?.urls?.regular">
+  <div *ngIf="hasMediaLinks" class="overlay-button-container">
+    <button *ngIf="twitterUsername" class="overlay-button" (click)="goToTwitterProfile()">
+      <img src="assets/icons/twitter.svg">
+    </button>
+    <button *ngIf="instagramUsername" class="overlay-button" (click)="goToInstagramProfile()">
+      <img src="assets/icons/instagram.svg">
+    </button>
+  </div>
+</div>
+<img class="close-icon" (click)="close()" src="assets/icons/close.svg">
