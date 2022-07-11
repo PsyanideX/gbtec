@@ -17,6 +17,8 @@ export class ImageViewerComponent {
   public instagramUsername?: string;
   public twitterUsername?: string;
 
+  public infoView: boolean = false;
+
   constructor(
     private readonly _httpClient: HttpClient,
     public dialogRef: MatDialogRef<ImageViewerComponent>,

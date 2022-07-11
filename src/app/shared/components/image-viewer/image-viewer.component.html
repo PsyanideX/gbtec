@@ -1,6 +1,9 @@
 <div class="image-container">
   <img class="image" [attr.src]="data?.urls?.regular">
-  <div class="overlay-button-container">
+  <div *ngIf="!infoView" class="overlay-button-container">
+    <button class="overlay-button" (click)="infoView = true">
+      <img src="assets/icons/info.svg">
+    </button>
     <button *ngIf="twitterUsername" class="overlay-button" (click)="goToTwitterProfile()">
       <img src="assets/icons/twitter.svg">
     </button>
@@ -10,6 +13,17 @@
     <button class="overlay-button" (click)="downloadImage()">
       <img src="assets/icons/download.svg">
     </button>
+  </div>
+  <div *ngIf="infoView" class="overlay-info-view">
+    <div class="profile-container">
+      <img [attr.src]="data?.user?.profile_image?.large">
+      <div class="name-container">
+        <span>{{data?.user?.username}}</span>
+        <span>{{data?.user?.first_name + " " + data?.user?.last_name}}</span>
+        <span>{{data?.user?.bio}}</span>
+      </div>
+    </div>
+    <img class="close-icon" (click)="infoView = false" src="assets/icons/close.svg">
   </div>
 </div>
 <img class="close-icon" (click)="close()" src="assets/icons/close.svg">

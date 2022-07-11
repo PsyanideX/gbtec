@@ -43,6 +43,44 @@
       cursor: pointer;
     }
   }
+
+  .overlay-info-view {
+    transition: opacity 1s ease;
+    opacity: 1;
+    height: auto;
+
+    max-height: 400px;
+    width: 100%;
+
+    position: absolute;
+    bottom: 6px;
+
+    padding: 20px;
+
+    background-color: rgba(100, 100, 100, 0.5);
+    font-size: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #ccc;
+
+    .profile-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: baseline;
+
+
+
+      .name-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px
+      }
+
+      img {
+        margin-right: 10px;
+        border-radius: 8px;
+      }
+    }
+  }
 }
 
 .close-icon {
@@ -54,6 +92,13 @@
 }
 
 .overlay-button-container {
+  transition: opacity 1s ease;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.overlay-info-view {
   transition: opacity 1s ease;
   opacity: 0;
   height: 0;
