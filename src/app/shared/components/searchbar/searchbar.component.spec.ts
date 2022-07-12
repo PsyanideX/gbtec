@@ -20,4 +20,11 @@ describe('SearchbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit event on search', () => {
+    const eventEmitterSpy = spyOn(component.searchEvent, 'emit');
+    component.searchQuery = 'cars';
+    component.search();
+    expect(eventEmitterSpy).toHaveBeenCalledOnceWith('cars');
+  })
 });

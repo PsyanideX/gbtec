@@ -8,12 +8,12 @@ export interface Image {
   id: string;
   created_at: string;
   updated_at: string;
-  promoted_at?: string;
+  promoted_at: string | undefined | null;
   width: number;
   height: number;
   color: string;
   blur_hash: string;
-  description?: string;
+  description: string | undefined | null;
   alt_description: string;
   urls: Urls;
   links: Links;
@@ -22,7 +22,7 @@ export interface Image {
   liked_by_user: boolean;
   current_user_collections: any[];
   sponsorship?: any;
-  topic_submissions: Topicsubmissions;
+  topic_submissions: any;
   user: User;
   tags: Tag[];
 }
@@ -47,13 +47,13 @@ interface Coverphoto {
   id: string;
   created_at: string;
   updated_at: string;
-  promoted_at?: string;
+  promoted_at: string | null | undefined;
   width: number;
   height: number;
   color: string;
   blur_hash: string;
   description: string;
-  alt_description: string;
+  alt_description: string | null | undefined;
   urls: Urls;
   links: Links;
   categories: any[];
@@ -61,7 +61,7 @@ interface Coverphoto {
   liked_by_user: boolean;
   current_user_collections: any[];
   sponsorship?: any;
-  topic_submissions: Topicsubmissions;
+  topic_submissions?: any;
   user: User;
 }
 
@@ -82,14 +82,14 @@ interface User {
   username: string;
   name: string;
   first_name: string;
-  last_name?: string;
-  twitter_username?: string;
-  portfolio_url?: string;
-  bio?: string;
-  location?: string;
+  last_name: string | undefined | null;
+  twitter_username: string | undefined | null;
+  portfolio_url: string | undefined | null;
+  bio: string | undefined | null;
+  location: string | undefined | null;
   links: Links;
   profile_image: Profileimage;
-  instagram_username?: string;
+  instagram_username: string | undefined | null;
   total_collections: number;
   total_likes: number;
   total_photos: number;
@@ -99,10 +99,10 @@ interface User {
 }
 
 interface Social {
-  instagram_username?: string;
-  portfolio_url?: string;
-  twitter_username?: string;
-  paypal_email?: any;
+  instagram_username: string | undefined | null;
+  portfolio_url: string | undefined | null;
+  twitter_username: string | undefined | null;
+  paypal_email: any | undefined | null;
 }
 
 interface Profileimage {
@@ -119,6 +119,8 @@ interface Links {
   portfolio?: string;
   following?: string;
   followers?: string;
+  download?: string;
+  download_location?: string;
 }
 
 interface Topicsubmissions {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Image } from '../../models/api-responses/image-list';
 
 @Component({
@@ -24,8 +24,8 @@ export class ImageViewerComponent {
     public dialogRef: MatDialogRef<ImageViewerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Image
   ) {
-    this.instagramUsername = data.user.social.instagram_username;
-    this.twitterUsername = data.user.social.instagram_username;
+    this.instagramUsername = data?.user?.social?.instagram_username || '';
+    this.twitterUsername = data?.user?.social?.twitter_username || '';
   }
 
   public close(): void {

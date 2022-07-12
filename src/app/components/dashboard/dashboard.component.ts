@@ -35,7 +35,6 @@ export class DashboardComponent implements OnInit {
   public totalPages!: number;
 
   public images: Image[] = [];
-  public imageSelected!: string;
 
   constructor(
     private readonly _unsplashService: UnsplashService,
@@ -55,7 +54,6 @@ export class DashboardComponent implements OnInit {
   }
 
   public selectImage(selectedImage: Image): void {
-    this.imageSelected = selectedImage.id;
     this._openImageViewer(selectedImage);
   }
 
