@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-production": "ng build --configuration production",
+    "build-production": "ng build --configuration production --base-href https://psyanidex.github.io/gbtec/",
+    "publish": "angular-cli-ghpages -d dist/gbtec/ --no-silent",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev-test": "ng test --watch --code-coverage"
