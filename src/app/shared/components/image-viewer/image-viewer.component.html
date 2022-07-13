@@ -1,7 +1,7 @@
 <div class="image-container">
   <img class="image" [attr.src]="data?.urls?.regular">
-  <div class="enable-overlay-mobile-container">
-    <button *ngIf="isMobile() && !showOverlayMobile" class="enable-overlay-mobile" (click)="toggleShowOverlayMobile()">
+  <div *ngIf="isMobile() && !showOverlayMobile" class="enable-overlay-mobile-container">
+    <button class="enable-overlay-mobile" (click)="toggleShowOverlayMobile()">
       <img src="assets/icons/eye.svg">
     </button>
   </div>

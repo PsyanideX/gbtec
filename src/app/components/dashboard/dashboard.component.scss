@@ -1,6 +1,6 @@
 .scroll-container {
   // scroll configuration
-  height: 90%;
+  height: 93%;
   overflow-y: scroll;
 
   display: flex;
@@ -11,4 +11,11 @@
   gap: 10px;
 
   padding: 10px;
+}
+
+
+@media (max-height: 768px) {
+  .scroll-container {
+    height: 90%;
+  }
 }

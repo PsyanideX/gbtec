@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
     if(value && value !== this.searchQuery) {
       this._searchQuery = value;
       this.images = [];
+      this.pageNumber = 1;
       this._getImages();
     }
   }
