@@ -18,6 +18,7 @@ export class ImageViewerComponent {
   public twitterUsername?: string;
 
   public infoView: boolean = false;
+  public showOverlayMobile: boolean = false;
 
   constructor(
     private readonly _httpClient: HttpClient,
@@ -64,6 +65,22 @@ export class ImageViewerComponent {
           link.remove();
         }, 100);
       });
+  }
+
+  public toggleShowOverlayMobile(): void {
+    this.showOverlayMobile = !this.showOverlayMobile;
+  }
+
+  public shouldShowButtons(): boolean {
+    return (!this.isMobile() && !this.infoView) || (this.isMobile() && this.showOverlayMobile && !this.infoView);
+  }
+
+  public shouldShowInfoView(): boolean {
+    return (!this.isMobile() && this.infoView) || (this.isMobile() && this.showOverlayMobile && this.infoView);
+  }
+
+  public isMobile(): boolean {
+    return window.innerWidth < 600;
   }
 
 }

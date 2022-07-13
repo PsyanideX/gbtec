@@ -1,6 +1,11 @@
 <div class="image-container">
   <img class="image" [attr.src]="data?.urls?.regular">
-  <div *ngIf="!infoView" class="overlay-button-container">
+  <div class="enable-overlay-mobile-container">
+    <button *ngIf="isMobile() && !showOverlayMobile" class="enable-overlay-mobile" (click)="toggleShowOverlayMobile()">
+      <img src="assets/icons/eye.svg">
+    </button>
+  </div>
+  <div *ngIf="shouldShowButtons()" class="overlay-button-container">
     <button class="overlay-button" (click)="infoView = true">
       <img src="assets/icons/info.svg">
     </button>
@@ -13,8 +18,11 @@
     <button class="overlay-button" (click)="downloadImage()">
       <img src="assets/icons/download.svg">
     </button>
+    <button *ngIf="isMobile()" class="overlay-button" (click)="showOverlayMobile = false">
+      <img src="assets/icons/cancel.png">
+    </button>
   </div>
-  <div *ngIf="infoView" class="overlay-info-view">
+  <div *ngIf="shouldShowInfoView()" class="overlay-info-view">
     <div class="profile-container">
       <img [attr.src]="data?.user?.profile_image?.large">
       <div class="name-container">
@@ -23,7 +31,7 @@
         <span>{{data?.user?.bio}}</span>
       </div>
     </div>
-    <img class="close-icon" (click)="infoView = false" src="assets/icons/close.svg">
+    <img class="close-icon" (click)="infoView = false" src="assets/icons/cancel.png">
   </div>
 </div>
 <img class="close-icon" (click)="close()" src="assets/icons/close.svg">
