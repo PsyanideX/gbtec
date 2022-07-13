@@ -45,6 +45,12 @@ describe('ImageViewerComponent', () => {
     expect(redirectSpy).toHaveBeenCalledOnceWith(`${instagramUrl}${component.data?.user?.social?.instagram_username}`, "_blank");
   });
 
+  it('should toggle show overlay on mobile', () => {
+    component.showOverlayMobile = true;
+    component.toggleShowOverlayMobile();
+    expect(component.showOverlayMobile).toEqual(false);
+  });
+
   function getImageData(): Image {
     return ({
       id: "8bYABbKgBYQ",
